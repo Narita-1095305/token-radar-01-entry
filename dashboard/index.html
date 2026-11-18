@@ -1,1 +1,40 @@
-placeholder
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Signal / Token Radar</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<a href="#board" class="skip">Skip to radar board</a>
+<div class="shell">
+  <header class="topbar"><a class="brand" href="#"><span class="radar-mark" aria-hidden="true"></span>SIGNAL<span class="brand-divider">/</span><span class="brand-sub">TOKEN RADAR</span></a><div class="seal"><i></i> SEALED SNAPSHOT <span id="snapshot-date"></span></div></header>
+  <main>
+    <section class="hero">
+      <div><div class="eyebrow">RESEARCH TERMINAL <span>01 / PRE-TOKEN</span></div><h1>Find the signal.<br><span>Before the ticker.</span></h1><p>A snapshot of protocols that record no token.<br>Ranked by comparable value. Built for deeper research.</p><button id="method-open" class="text-button">Explore the methodology <span>↗</span></button></div>
+      <div class="radar-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="cross x"></div><div class="cross y"></div><div class="sweep"></div><i class="blip b1"></i><i class="blip b2"></i><i class="blip b3"></i><span class="scan-label">SNAPSHOT SIGNAL / 001</span><span class="scan-coordinate">MODEL ESTIMATES<br>NO LIVE FEED</span></div>
+    </section>
+    <section class="metrics" aria-label="Board summary"><div><span>PROTOCOLS ON RADAR</span><strong id="metric-rows">—</strong><small>ranked opportunities</small></div><div><span>WATCHLIST COVERAGE</span><strong id="metric-watch">—</strong><small>snapshot watchlist preserved</small></div><div><span>TOKENIZED COMPARABLES</span><strong id="metric-peers">—</strong><small>market cap / TVL observations</small></div><div><span>GLOBAL MEDIAN MULTIPLE</span><strong id="metric-multiple">—</strong><small>winsorized at 0.01× – 5×</small></div></section>
+    <section id="board" tabindex="-1" class="board-panel">
+      <div class="section-top"><div><span class="status-dot"></span><h2>Opportunity board</h2><span class="tag">MODEL v1.0</span></div><span id="results" role="status" aria-live="polite"></span></div>
+      <form id="filters" class="filters" role="search">
+        <label class="search"><span>SEARCH PROTOCOLS</span><input id="search" type="search" placeholder="Name, category or chain…" autocomplete="off"></label>
+        <label><span>CATEGORY</span><select id="category"><option value="">All categories</option></select></label>
+        <label><span>CHAIN</span><select id="chain"><option value="">All chains</option></select></label>
+        <label><span>MIN. TVL</span><select id="min-tvl"><option value="0">Any size</option><option value="1000000">$1M+</option><option value="10000000">$10M+</option><option value="100000000">$100M+</option><option value="1000000000">$1B+</option></select></label>
+        <label class="toggle"><input id="watch-only" type="checkbox"><span>Watchlist only</span></label><button class="reset" type="reset">Reset</button>
+      </form>
+      <div class="table-scroll"><table><thead><tr id="headers"></tr></thead><tbody id="rows"></tbody></table></div>
+      <div class="table-bottom"><span>Click a protocol to inspect its model &amp; farm plan</span><span>USD · 7d change in percent · estimates ≠ market caps</span></div>
+    </section>
+    <section id="methodology" class="method" hidden><div class="eyebrow">HOW THE SIGNAL IS BUILT</div><h2>Comparable markets. Explicit assumptions.</h2><div class="method-grid"><div><h3>01 / Establish a baseline</h3><p>For snapshot protocols with market cap and positive TVL, divide market cap by TVL and clamp each ratio to 0.01×–5×. Use the category median with four or more observations. For fewer, blend it with the global median using count ÷ 4 as category weight.</p></div><div><h3>02 / Adjust the signal</h3><p>TVL × category multiple × growth × age × chains. Growth is 1 + 1.5 × (7d change ÷ 100), capped at 0.70–1.60. Age follows 0.75 + 0.5 × years ÷ (years + 1.5); unknown age uses 0.80. Each additional chain adds 3%, up to five.</p></div><div><h3>03 / Read with care</h3><p>Estimates are rounded and clamped to $100K–$100B. All watchlist rows are retained; eligible additional rows fill toward 240, or fewer when the eligible set is smaller. “Records no token” describes the snapshot’s symbol and CoinGecko fields, not proof of token absence. Plans are exploratory, with estimated costs; rewards are not guaranteed.</p></div></div><p class="method-note">Additional rows exclude the specified bridge, staking and exchange categories, wrapped or staked names, version suffixes and exchange prefixes. Comparable ratios are descriptive; they do not establish a future token price or entitlement.</p></section>
+  </main>
+  <footer><span><b>SIGNAL</b> / token-radar-01</span><p id="provenance"></p><span>SNAPSHOT IN. SIGNAL OUT.</span></footer>
+</div>
+<dialog id="detail" aria-labelledby="detail-title"><div id="detail-content"></div></dialog>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
